@@ -1,0 +1,156 @@
+/* App.css */
+
+/* General styling */
+.container {
+	font-family: Arial, sans-serif;
+	padding: 20px;
+  }
+  
+  /* Navbar styling */
+  .navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	background-color: #333;
+	color: #fff;
+  }
+  
+  .navbar .brand {
+	font-size: 1.5em;
+  }
+  
+  .navbar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+  }
+  
+  .navbar ul li {
+	margin: 0 10px;
+  }
+  
+  .navbar a {
+	text-decoration: none;
+	color: #fff;
+  }
+  
+  .navbar a.active-link {
+	font-weight: bold;
+  }
+  
+  /* Authentication button styling */
+  .auth-container {
+	display: flex;
+  }
+  
+  .auth-button {
+	background-color: #ffcc00; /* Dark yellow color */
+	color: #000; /* Text color */
+	border: none;
+	padding: 10px 20px;
+	margin: 0 5px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 1em;
+  }
+  
+  .auth-button:hover {
+	background-color: #e6b800; /* Slightly darker yellow on hover */
+  }
+  
+  /* Grid layout for buttons in logged-in view */
+  .grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 20px;
+  }
+  
+  .flex-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 20px;
+  }
+  
+  .card {
+	background-color: #ffcc00; /* Dark yellow color */
+	color: #000; /* Text color */
+	border: none;
+	padding: 10px 20px;
+	margin: 5px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 1em;
+  }
+  
+  .card:hover {
+	background-color: #e6b800; /* Slightly darker yellow on hover */
+  }
+  
+  
+  /* Title and footer styling */
+  .title {
+	font-size: 2em;
+	margin-bottom: 20px;
+  }
+  
+  .footer {
+	margin-top: 20px;
+  }
+  
+  .footer a {
+	color: #007bff;
+	text-decoration: none;
+  }
+  
+  .footer a:hover {
+	text-decoration: underline;
+  }
+  
+  /* Card styling */
+.card {
+	background-color: #333;
+	color: white;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	transition: transform 0.3s;
+	width: 300px;
+	margin: 10px;
+  }
+  
+  .card:hover {
+	transform: scale(1.05);
+  }
+  
+  .card-image {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+  }
+  
+  .card-content {
+	padding: 15px;
+  }
+  
+  .card-content h3 {
+	margin: 0 0 10px 0;
+  }
+  
+  .card-content p {
+	margin: 0;
+  }
+
+  /* Grid layout for cards */
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
+	margin-top: 20px;
+  }
+  

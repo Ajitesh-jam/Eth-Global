@@ -1,0 +1,106 @@
+/* App.css */
+
+/* General container styling */
+.container {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem;
+}
+
+.navbar .brand {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  margin-right: 1rem;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 5px;
+}
+
+.navbar ul li a:hover,
+.navbar ul li .active-link {
+  background-color: #555;
+}
+
+/* Auth info styling */
+.auth-info {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  color: white;
+}
+
+.auth-info .account-id,
+.auth-info .balance {
+  margin-right: 1rem;
+}
+
+/* Auth button styling */
+.auth-container {
+  margin-left: auto;
+}
+
+.auth-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.auth-button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar ul li {
+    margin: 0.5rem 0;
+  }
+
+  .auth-container {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .navbar .auth-button {
+    margin-top: 1rem;
+  }
+
+  .auth-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
