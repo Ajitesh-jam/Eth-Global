@@ -92,4 +92,29 @@ const signMessage = async (provider: IProvider): Promise<any> => {
   }
 }
 
-export default {getChainId, getAccounts, getBalance, sendTransaction, signMessage};
+const customSignMessage = async (provider: IProvider, message: string): Promise<any> => {
+  try {
+    // For ethers v5
+    // const ethersProvider = new ethers.providers.Web3Provider(provider);
+    const ethersProvider = new ethers.BrowserProvider(provider);
+
+    // For ethers v5
+    // const signer = ethersProvider.getSigner();
+    const signer = await ethersProvider.getSigner();
+
+    // Sign the message
+    const signedMessage = await signer.signMessage(message);
+
+    return signedMessage;
+  } catch (error) {
+    return error as string;
+  }
+}
+
+const getSigner = async (provider:IProvider) => {
+  const ethersProvider = new ethers.BrowserProvider(provider);
+  const signer = await ethersProvider.getSigner();
+  return signer;
+}
+
+export default {getChainId, getAccounts, getBalance, sendTransaction, signMessage, customSignMessage,getSigner};

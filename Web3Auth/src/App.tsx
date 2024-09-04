@@ -1,3 +1,4 @@
+// src/App.tsx
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
 import Home from './components/Home';
@@ -7,8 +8,7 @@ import { Web3Auth } from "@web3auth/modal";
 import { CHAIN_NAMESPACES, WEB3AUTH_NETWORK, IProvider } from "@web3auth/base";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import RPC from "./ethersRPC"; // Ensure you have the correct RPC implementation
-import { providers } from 'web3';
-
+import { ethers, AnkrProvider } from "ethers";
 // Web3Auth configuration
 const clientId = "BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ";
 
@@ -43,41 +43,41 @@ function App() {
     const init = async () => {
       try {
         await web3auth.initModal();
+        setProvider(web3auth.provider);
+
         if (web3auth.connected) {
-          setProvider(web3auth.provider);
           setLoggedIn(true);
+          await fetchAccountAndBalance();
         }
       } catch (error) {
         console.error("Initialization error:", error);
       }
     };
+
     init();
   }, []);
 
-  useEffect(() => {
-    const fetchAccountAndBalance = async () => {
-      if (provider) {
-        try {
-          const accounts = await RPC.getAccounts(provider);
-          setAccountId(accounts);
-          const balance = await RPC.getBalance(provider);
-          setBalance(balance);
-        } catch (error) {
-          console.error("Error fetching account and balance:", error);
-        }
+  const fetchAccountAndBalance = async () => {
+    if (provider) {
+      try {
+        const accounts = await RPC.getAccounts(provider);
+        setAccountId(accounts);
+        const balance = await RPC.getBalance(provider);
+        setBalance(balance);
+      } catch (error) {
+        console.error("Error fetching account and balance:", error);
       }
-    };
-
-    if (provider && loggedIn) {
-      fetchAccountAndBalance();
     }
-  }, [provider, loggedIn]);
+  };
 
   const login = async () => {
     try {
       const web3authProvider = await web3auth.connect();
       setProvider(web3authProvider);
-      setLoggedIn(true);
+      if (web3auth.connected) {
+        setLoggedIn(true);
+        await fetchAccountAndBalance();
+      }
     } catch (error) {
       console.error("Login error:", error);
     }
@@ -86,7 +86,6 @@ function App() {
   const logout = async () => {
     try {
       await web3auth.logout();
-      setProvider(null);
       setLoggedIn(false);
       setAccountId(null);
       setBalance(null);
@@ -157,6 +156,19 @@ function App() {
     }
   };
 
+  const customSignedMessage = async (message:string) => {
+    if (!provider) {
+      uiConsole("provider not initialized yet");
+      return;
+    }
+    try {
+      const signedMessage = await RPC.customSignMessage(provider,message);
+      uiConsole(signedMessage);
+    } catch (error) {
+      console.error("Sign Message error:", error);
+    }
+  };
+
   function uiConsole(...args: any[]): void {
     const el = document.querySelector("#console>p");
     if (el) {
@@ -169,14 +181,14 @@ function App() {
     <div className="container">
       <Router>
         <nav className="navbar">
-          <div className="brand">Web3Auth</div>
+          <div className="brand auth-button">Web3Auth</div>
           <ul>
             <li><NavLink to="/" >Home</NavLink></li>
             <li><NavLink to="/myprofile" >MyProfile</NavLink></li>
           </ul>
           <div className="auth-info">
-            {accountId && <span className="account-id">{accountId}</span>}
-            {balance && <span className="balance">{balance} ETH</span>}
+            {accountId && <span className="account-id auth-button">{accountId}</span>}
+            {balance && <span className="balance auth-button"> {balance} ETH</span>}
           </div>
           <div className="auth-container">
             {loggedIn ? (
@@ -199,6 +211,7 @@ function App() {
                 signMessage={signMessage}
                 sendTransaction={sendTransaction}
                 logout={logout}
+                customSignedMessage={customSignedMessage}
               />
             } 
           />
