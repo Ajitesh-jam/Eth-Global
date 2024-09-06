@@ -2,12 +2,8 @@ import { State } from "@stackr/sdk/machine";
 import { solidityPackedKeccak256 } from "ethers";
 
 
-// export type Owner = {
-//   Waddress: string;
-//   skins: number[];
-// };
-
-export class skinOwners extends State<number[]> {
+//will keep track of users skin
+export class skinOwner extends State<number[]> {
 
   constructor(state: number[]) {
     super(state); 

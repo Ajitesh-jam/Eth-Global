@@ -20,10 +20,11 @@ const OwnerSchema =  {
 };
 
 // Define the main action schema
-export const UpdateCounterSchema = new ActionSchema("update-New", {
+export const UpdateSkinSchema = new ActionSchema("update-New", {
   
   //Owner: OwnerSchema,  // Use the Owner schema here
-  timestamp: SolidityType.UINT
+  timestamp: SolidityType.UINT,
+  skinAdd:SolidityType.UINT
   
 });
 

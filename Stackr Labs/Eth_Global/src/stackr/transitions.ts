@@ -1,18 +1,19 @@
 import { STF, Transitions } from "@stackr/sdk/machine";
-import {  skinOwners } from "./state";
+import {  skinOwner } from "./state";
 
-const updateNew: STF<skinOwners> = {
-  handler: ({ state, emit }) => {
+const updateNew: STF<skinOwner> = {
+  handler: ({ inputs,state, emit }) => {
     // Push a new owner object into the state array
     //state.skins.push(1);
     state.push(1);
+    
     
     emit({ name: "New skin with id 1 is added", value: state });
     return state;
   },
 };
 
-const RemoveUser: STF<skinOwners> = {
+const RemoveUser: STF<skinOwner> = {
   handler: ({ state, emit }) => {
     //state.skins.pop();
     state.pop();
@@ -22,7 +23,7 @@ const RemoveUser: STF<skinOwners> = {
   
 };
 
-export const transitions: Transitions<skinOwners> = {
+export const transitions: Transitions<skinOwner> = {
   updateNew,
   RemoveUser,
 };

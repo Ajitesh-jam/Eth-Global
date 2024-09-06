@@ -1,11 +1,11 @@
 import { MicroRollup } from "@stackr/sdk";
 import { stackrConfig } from "../../stackr.config";
 import { machine } from "./machine";
-import { UpdateCounterSchema } from "./schemas";
+import { UpdateSkinSchema } from "./schemas";
 
 const mru = await MicroRollup({
   config: stackrConfig,
-  actionSchemas: [UpdateCounterSchema],
+  actionSchemas: [UpdateSkinSchema],
   stateMachines: [machine],
 });
 
@@ -16,7 +16,7 @@ import { Playground } from "@stackr/sdk/plugins";
  
 const rollup = await MicroRollup({
     config: stackrConfig,
-    actionSchemas: [UpdateCounterSchema], // Action Schemas of the rollup.
+    actionSchemas: [UpdateSkinSchema], // Action Schemas of the rollup.
     stateMachines: [machine],
 });
  
