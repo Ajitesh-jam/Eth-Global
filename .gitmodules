@@ -1,0 +1,3 @@
+[submodule "RacingGame"]
+	path = RacingGame
+	url = https://github.com/HarshuCharsu/street-racing-unity.git
