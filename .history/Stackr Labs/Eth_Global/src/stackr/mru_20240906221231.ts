@@ -23,8 +23,8 @@ const rollup = await MicroRollup({
 await rollup.init();
  
 Playground.init(rollup); 
-// const playground = Playground.init(rollup);
+const playground = Playground.init(rollup);
  
-// playground.addGetMethod("/custom/state", (_req, res) => {
-//   return res.json({ state: pointsMachine?.state }); 
-// }); 
+playground.addGetMethod("/custom/state", (_req, res) => {
+  return res.json({ state: pointsMachine?.state }); 
+}); 

@@ -125,7 +125,7 @@ const submitNew = async () => {
 
   //const wallet = Wallet.createRandom();
 
-  const privateKey = process.env.PRIVATE_KEY as string; // Replace with your private key
+  const privateKey = process.env.privateKey; // Replace with your private key
   let wallet =new Wallet(privateKey);
 
   const signature = await signMessage(privateKey, UpdateCounterSchema, inputs);

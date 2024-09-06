@@ -109,63 +109,105 @@
 
 
 
-import { ActionConfirmationStatus } from "@stackr/sdk";
-import { Wallet } from "ethers";
-import ethers from "ethers";
-import { mru } from "./stackr/mru.ts";
-import { UpdateCounterSchema } from "./stackr/schemas.ts";
-import { signMessage } from "./utils.ts";
-import readline from "readline";
+// import { ActionConfirmationStatus } from "@stackr/sdk";
+// import { Wallet } from "ethers";
+// import ethers from "ethers";
+// import { mru } from "./stackr/mru.ts";
+// import { UpdateCounterSchema } from "./stackr/schemas.ts";
+// import { signMessage } from "./utils.ts";
+// import readline from "readline";
 
-const submitNew = async () => {
-  console.log("Submit New");
+// const submitNew = async () => {
+//   console.log("Submit New");
+//   const inputs = {
+//     timestamp: Date.now(),
+//   };
+
+//   //const wallet = Wallet.createRandom();
+
+//   const privateKey = "your-private-key-here"; // Replace with your private key
+//   let wallet = new ethers.Wallet(privateKey);
+//   const signature = await signMessage(wallet, UpdateCounterSchema, inputs);
+//   const incrementAction = UpdateCounterSchema.actionFrom({
+//     inputs,
+//     signature,
+//     msgSender: wallet.address,
+//   });
+
+//   const ack = await mru.submitAction("updateNew", incrementAction);
+//   console.log(ack.hash);
+
+//   const { logs, errors } = await ack.waitFor(ActionConfirmationStatus.C1);
+//   console.log({ logs, errors });
+// };
+
+// const rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+//   prompt: '> ',
+// });
+
+// rl.prompt();
+// rl.on('line', (line) => {
+//   switch (line.trim()) {
+//     case 'submitNew':
+//       submitNew();
+//       break;
+//     default:
+//       console.log(`Unknown command: ${line.trim()}`);
+//       break;
+//   }
+//   rl.prompt();
+// }).on('close', () => {
+//   console.log('Exiting...');
+//   process.exit(0);
+// });
+
+// const main = async () => {
+//   console.log("Script is running. Type 'submitNew' to invoke submitNew()");
+// };
+
+// main();
+
+
+
+
+
+
+
+import { Wallet } from "ethers"; // Import Wallet
+import { UpdateCounterSchema } from "./stackr/schemas.ts"; // Assuming this is the correct path
+import { signMessage } from "./utils.ts"; // Assuming this is your function for signing messages
+import { mru } from "./stackr/mru.ts"; // Assuming this is your mru module
+import { ActionConfirmationStatus } from "@stackr/sdk"; // Import ActionConfirmationStatus
+
+const submitNew = async (wallet: Wallet) => {
   const inputs = {
     timestamp: Date.now(),
   };
 
-  //const wallet = Wallet.createRandom();
+  // Sign the message using the provided wallet
+  const signature = await signMessage(wallet, UpdateCounterSchema, inputs);
 
-  const privateKey = process.env.PRIVATE_KEY as string; // Replace with your private key
-  let wallet =new Wallet(privateKey);
-
-  const signature = await signMessage(privateKey, UpdateCounterSchema, inputs);
+  // Create action from the schema
   const incrementAction = UpdateCounterSchema.actionFrom({
     inputs,
     signature,
-    msgSender: wallet.address,
+    msgSender: wallet.address, // Use the wallet's address
   });
 
+  // Submit the action
   const ack = await mru.submitAction("updateNew", incrementAction);
   console.log(ack.hash);
 
+  // Wait for confirmation (C1) and access logs & errors from STF execution
   const { logs, errors } = await ack.waitFor(ActionConfirmationStatus.C1);
   console.log({ logs, errors });
 };
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  prompt: '> ',
-});
+// Example: Passing a regular wallet with a private key
+const myPrivateKey = "your-private-key-here"; // Replace with your actual private key
+const wallet = new Wallet(myPrivateKey);
 
-rl.prompt();
-rl.on('line', (line) => {
-  switch (line.trim()) {
-    case 'submitNew':
-      submitNew();
-      break;
-    default:
-      console.log(`Unknown command: ${line.trim()}`);
-      break;
-  }
-  rl.prompt();
-}).on('close', () => {
-  console.log('Exiting...');
-  process.exit(0);
-});
-
-const main = async () => {
-  console.log("Script is running. Type 'submitNew' to invoke submitNew()");
-};
-
-main();
+// Call the function with the wallet
+submitNew(wallet);

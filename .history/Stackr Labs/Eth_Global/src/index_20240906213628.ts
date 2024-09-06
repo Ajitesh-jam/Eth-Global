@@ -125,10 +125,9 @@ const submitNew = async () => {
 
   //const wallet = Wallet.createRandom();
 
-  const privateKey = process.env.PRIVATE_KEY as string; // Replace with your private key
-  let wallet =new Wallet(privateKey);
-
-  const signature = await signMessage(privateKey, UpdateCounterSchema, inputs);
+  const privateKey = "your-private-key-here"; // Replace with your private key
+  let wallet = new ethers.Wallet(privateKey);
+  const signature = await signMessage(wallet, UpdateCounterSchema, inputs);
   const incrementAction = UpdateCounterSchema.actionFrom({
     inputs,
     signature,

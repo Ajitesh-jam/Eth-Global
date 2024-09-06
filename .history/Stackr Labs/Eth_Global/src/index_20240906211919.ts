@@ -106,12 +106,8 @@
 
 
 
-
-
-
 import { ActionConfirmationStatus } from "@stackr/sdk";
 import { Wallet } from "ethers";
-import ethers from "ethers";
 import { mru } from "./stackr/mru.ts";
 import { UpdateCounterSchema } from "./stackr/schemas.ts";
 import { signMessage } from "./utils.ts";
@@ -125,10 +121,9 @@ const submitNew = async () => {
 
   //const wallet = Wallet.createRandom();
 
-  const privateKey = process.env.PRIVATE_KEY as string; // Replace with your private key
-  let wallet =new Wallet(privateKey);
-
-  const signature = await signMessage(privateKey, UpdateCounterSchema, inputs);
+  const privateKey = "your-private-key-here"; // Replace with your private key
+  const wallet = new Wallet(privateKey);
+  const signature = await signMessage(wallet, UpdateCounterSchema, inputs);
   const incrementAction = UpdateCounterSchema.actionFrom({
     inputs,
     signature,
