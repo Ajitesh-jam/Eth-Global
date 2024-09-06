@@ -1,21 +1,12 @@
 {
+  "extends": "@toruslabs/config/tsconfig.default.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
-  },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+    "jsx": "react",
+    "paths": {
+      "@web3auth/*-adapter": ["./packages/adapters/*-adapter"],
+      "@web3auth/*-provider": ["./packages/providers/*-provider"],
+      "@web3auth/*": ["./packages/*"],
+      "@web3auth/*-plugin": ["./packages/plugins/*-plugin"]
+    }
+  }
 }
