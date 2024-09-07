@@ -120,7 +120,7 @@ import readline from "readline";
 const submitNew = async () => {
   console.log("Submit New");
   const inputs = {
-    timestamp: Date.now(),
+    timestamp:Date.now(),
     skinAdd: 1,
   };
 
@@ -130,11 +130,17 @@ const submitNew = async () => {
   let wallet =new Wallet(privateKey);
 
   const signature = await signMessage(privateKey, UpdateSkinSchema, inputs);
+
+  console.log("signa: ",signature);
+  console.log("wallet: ",wallet.address);
+  console.log("input: ",inputs);
   const incrementAction = UpdateSkinSchema.actionFrom({
     inputs,
     signature,
     msgSender: wallet.address,
   });
+
+  console.log("Increment acrion: \n",incrementAction)
 
   const ack = await mru.submitAction("updateNew", incrementAction);
   console.log(ack.hash);

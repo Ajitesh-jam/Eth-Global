@@ -2,7 +2,7 @@ import { STF, Transitions } from "@stackr/sdk/machine";
 import {  skinOwner } from "./state";
 
 const updateNew: STF<skinOwner> = {
-  handler: ({ inputs,state, emit }) => {
+  handler: ({ state, emit }) => {
     // Push a new owner object into the state array
     //state.skins.push(1);
     state.push(1);
