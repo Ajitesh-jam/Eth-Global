@@ -2,6 +2,8 @@
   "extends": "@toruslabs/config/tsconfig.default.json",
   "compilerOptions": {
     "jsx": "react",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "paths": {
       "@web3auth/*-adapter": ["./packages/adapters/*-adapter"],
       "@web3auth/*-provider": ["./packages/providers/*-provider"],
