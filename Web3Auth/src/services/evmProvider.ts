@@ -1,5 +1,5 @@
 import type { IProvider } from "@web3auth/base";
-import { ContractFactory, ethers } from "ethers";
+import { ethers } from "ethers";
 
 // import { json } from "stream/consumers";
 import { IWalletProvider } from "./walletProvider";
