@@ -89,6 +89,32 @@ const ethersWeb3Provider = (provider: IProvider | null, uiConsole: (...args: unk
     }
   };
 
+  const buyTokens = async (contractAddress: string, contractABI: any, amount: string): Promise<string> => {
+    try {
+      const ethersProvider = new ethers.BrowserProvider(provider as any);
+      const signer = await ethersProvider.getSigner();
+  
+      const contract = new ethers.Contract(contractAddress, JSON.parse(JSON.stringify(contractABI)), signer);
+  
+      // Convert the amount of Ether to send into BigInt format
+      const amountBigInt = ethers.parseEther(amount);
+  
+      // Send Ether to the smart contract to buy tokens
+      const tx = await contract.buyTokens({
+        value: amountBigInt, // Ether value for the transaction
+        maxPriorityFeePerGas: "5000000", // Max priority fee per gas
+        maxFeePerGas: "6000000000", // Max fee per gas
+      });
+  
+      // Wait for the transaction to complete
+      const receipt = await tx.wait();
+      return receipt;
+    } catch (error: any) {
+      uiConsole(error);
+      return `Error: ${error.message || error}`;
+    }
+  };
+
   const getPrivateKey = async (): Promise<string> => {
     try {
       const privateKey = await provider?.request({
@@ -235,6 +261,7 @@ const ethersWeb3Provider = (provider: IProvider | null, uiConsole: (...args: unk
     readTokens,
     sellItems,
     sellTokens,
+    buyTokens,
   };
 };
 

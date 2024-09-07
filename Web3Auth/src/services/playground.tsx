@@ -29,6 +29,7 @@ export interface IPlaygroundContext {
   readTokens: (contractAddress: string, contractABI: any) => Promise<string>;
   readItems: (contractAddress: string, contractABI: any) => Promise<string>;
   sellItem: (contractAddress: string, contractABI: any, updatedValue: string) => Promise<any>;
+  buyTokens: (contractAddress: string, contractABI: any, updatedValue: string) => Promise<any>;
   getIdToken: () => Promise<string>;
   verifyServerSide: (idToken: string) => Promise<any>;
   switchChain: (customChainConfig: CustomChainConfig) => Promise<void>;
@@ -63,6 +64,7 @@ export const PlaygroundContext = createContext<IPlaygroundContext>({
   verifyServerSide: async () => {},
   switchChain: async () => null,
   updateConnectedChain: () => {},
+  buyTokens: async () => "",
 });
 
 
@@ -255,6 +257,17 @@ export const Playground = ({ children }: IPlaygroundProps) => {
     uiConsole(receipt);
   };
 
+  const buyTokens = async (contractAddress: string, contractABI: any, updatedValue: string): Promise<any> => {
+    if (!provider) {
+      uiConsole("provider not initialized yet");
+      return;
+    }
+    console.log(updatedValue)
+    const receipt = await walletProvider.buyTokens(contractAddress, contractABI, updatedValue);
+    
+    uiConsole(receipt);
+  };
+
   const parseToken = (token: any) => {
     try {
       const base64Url = token.split(".")[1];
@@ -398,6 +411,7 @@ export const Playground = ({ children }: IPlaygroundProps) => {
     readItems,
     sellItem,
     sellTokens,
+    buyTokens,
   };
   return <PlaygroundContext.Provider value={contextProvider}>{children}</PlaygroundContext.Provider>;
 };

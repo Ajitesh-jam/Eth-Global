@@ -15,6 +15,7 @@ export interface IWalletProvider {
   readTokens: (contractAddress: string, contractABI: any) => Promise<string>;
   sellItems: (contractAddress: string, contractABI: any, updatedValue: string) => Promise<any>;
   sellTokens: (contractAddress: string, contractABI: any, updatedValue: string) => Promise<any>;
+  buyTokens: (contractAddress: string, contractABI: any, amount: string) => Promise<any>;
 }
 
 export const getWalletProvider = (provider: IProvider | null, uiConsole: any): IWalletProvider => {

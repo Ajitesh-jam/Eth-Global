@@ -38,7 +38,7 @@ function Contract() {
     </button>
   );
 
-  const { writeContract,readItems,readTokens, sellItem, sellTokens } = usePlayground();
+  const { writeContract,readItems,readTokens, sellItem, sellTokens, buyTokens } = usePlayground();
   const { isConnected } = useWeb3Auth();
 
   const formDetailsWrite = [
@@ -52,6 +52,14 @@ function Contract() {
   const formSellItem = [
     {
       label: "Item index",
+      input: contractValue,
+      onChange: setContractValue,
+    },
+  ];
+
+  const formBuyTokens = [
+    {
+      label: "Ether",
       input: contractValue,
       onChange: setContractValue,
     },
@@ -71,7 +79,12 @@ function Contract() {
       tabName: "Read Tokens",
       onClick: () => setTab("readTokens"),
       active: tab === "readTokens",
-    },    
+    }, 
+    {
+      tabName: "Buy Tokens",
+      onClick: () => setTab("buyTokens"),
+      active: tab === "buyTokens",
+    },   
     {
       tabName: "Sell Tokens",
       onClick: () => setTab("sellTokens"),
@@ -172,6 +185,21 @@ function Contract() {
                     }}
                   >
                     Sell Tokens
+                  </LoaderButton>
+                </Form>
+              ) : null}
+              {tab === "buyTokens" ? (
+                <Form formDetails={formBuyTokens}>
+                  <LoaderButton
+                    className="w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white"
+                    style={{ backgroundColor: "#0364ff" }}
+                    onClick={() => {
+                      setLoading(true);
+                      buyTokens(address, abi, contractValue);
+                      setLoading(false);
+                    }}
+                  >
+                    Buy Tokens
                   </LoaderButton>
                 </Form>
               ) : null}
