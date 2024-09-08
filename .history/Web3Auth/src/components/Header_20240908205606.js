@@ -57,12 +57,12 @@ const Header = () => {
         ),        
         React.createElement(
             "button",
-            { className: "btn flex-col flex-row mt-0 items-center lg:flex hidden", onClick: () => window.open("https://ajiteshjam.itch.io/eth-global-car-racing-game", '_blank') },
+            { className: "btn flex-col flex-row mt-0 items-center lg:flex hidden", onClick: () => window.open("https://google.com", '_blank') },
             "Play Racing Game"
           ),
           React.createElement(
             "button",
-            { className: "btn flex-col flex-row mt-0 items-center lg:flex hidden", onClick: () => window.open("https://ajiteshjam.itch.io/eth-global-space-surfer", '_blank') },
+            { className: "btn flex-col flex-row mt-0 items-center lg:flex hidden", onClick: () => window.open("https://google.com", '_blank') },
             "Play Space Surfer"
           ),
         React.createElement(
