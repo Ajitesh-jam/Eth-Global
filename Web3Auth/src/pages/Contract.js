@@ -98,36 +98,36 @@ function Contract() {
             React.createElement("div", { className: "w-full h-full flex flex-1 flex-col bg-gray-50 items-center justify-flex-start overflow-scroll" },
                 React.createElement("h1", { className: "w-11/12 px-4 pt-16 pb-8 sm:px-6 lg:px-8 text-2xl font-bold text-center sm:text-3xl" }, "Smart Contract Interactions"),
                 React.createElement(Tabs, { tabData: TabData }),
-                tab === "readTokens" ? (React.createElement(LoaderButton, { className: " mfullt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#0364ff" }, onClick: () => {
+                tab === "readTokens" ? (React.createElement(LoaderButton, { className: " mfullt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#ffd700" }, onClick: () => {
                         setLoading(true);
                         readTokens(address, abi);
                         setLoading(false);
                     } }, "Read Tokens")) : null,
-                tab === "readItems" ? (React.createElement(LoaderButton, { className: "w mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#0364ff" }, onClick: () => {
+                tab === "readItems" ? (React.createElement(LoaderButton, { className: "w mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#ffd700" }, onClick: () => {
                         setLoading(true);
                         readItems(address, abi);
                         setLoading(false);
                     } }, "Read Items")) : null,
                 tab === "write" ? (React.createElement(Form, { formDetails: formDetailsWrite },
-                    React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#0364ff" }, onClick: () => {
+                    React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#ffd700" }, onClick: () => {
                             setLoading(true);
                             writeContract(address, abi, contractValue);
                             setLoading(false);
                         } }, "Buy Item"))) : null,
                 tab === "sellItems" ? (React.createElement(Form, { formDetails: formSellItem },
-                    React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#0364ff" }, onClick: () => {
+                    React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#ffd700" }, onClick: () => {
                             setLoading(true);
                             sellItem(address, abi, contractValue);
                             setLoading(false);
                         } }, "Sell Items"))) : null,
                 tab === "sellTokens" ? (React.createElement(Form, { formDetails: formSellTokens },
-                    React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#0364ff" }, onClick: () => {
+                    React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#ffd700" }, onClick: () => {
                             setLoading(true);
                             sellTokens(address, abi, contractValue);
                             setLoading(false);
                         } }, "Sell Tokens"))) : null,
                 tab === "buyTokens" ? (React.createElement(Form, { formDetails: formBuyTokens },
-                    React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#0364ff" }, onClick: () => {
+                    React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#ffd700" }, onClick: () => {
                             setLoading(true);
                             buyTokens(address, abi, contractValue);
                             setLoading(false);

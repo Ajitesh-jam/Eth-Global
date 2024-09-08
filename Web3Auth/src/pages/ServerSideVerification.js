@@ -30,11 +30,11 @@ function ServerSideVerification() {
             React.createElement(Sidebar, null),
             React.createElement("div", { className: " w-full h-full flex flex-1 flex-col bg-gray-50 items-center justify-flex-start overflow-scroll" },
                 React.createElement("h1", { className: "w-11/12 px-4 pt-16 pb-8 sm:px-6 lg:px-8 text-2xl font-bold text-center sm:text-3xl" }, "Server Side Verification"),
-                React.createElement(Form, { heading: "", formDetails: formDetails }, tokenId ? (React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#0364ff" }, onClick: async () => {
+                React.createElement(Form, { heading: "", formDetails: formDetails }, tokenId ? (React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#ffd700" }, onClick: async () => {
                         setLoading(true);
                         await verifyServerSide(tokenId);
                         setLoading(false);
-                    } }, "Verify")) : (React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#0364ff" }, onClick: async () => {
+                    } }, "Verify")) : (React.createElement(LoaderButton, { className: "w-full mt-10 mb-0 text-center justify-center items-center flex rounded-full px-6 py-3 text-white", style: { backgroundColor: "#ffd700" }, onClick: async () => {
                         setLoading(true);
                         const idtoken = await getIdToken();
                         setTokenId(idtoken);
