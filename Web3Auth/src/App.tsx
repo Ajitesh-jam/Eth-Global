@@ -23,7 +23,7 @@ function App() {
               <Routes>
                 <Route path="/">
                   <Route index element={<HomePage />} />
-                  <Route path="contract" element={<Contract />} />
+                  <Route path="/contract/:id" element={<Contract />} />
                   <Route path="transaction" element={<Transaction />} />
                   <Route path="server-side-verification" element={<ServerSideVerification />} />
                 </Route>

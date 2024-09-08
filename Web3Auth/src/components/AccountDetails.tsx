@@ -1,7 +1,6 @@
 import { CustomChainConfig } from "@web3auth/base";
 import { useWeb3Auth } from "@web3auth/modal-react-hooks";
 import React, { JSX, useEffect, useState } from "react";
-
 import Dropdown from "../components/DropDown";
 import { usePlayground } from "../services/playground";
 
@@ -31,7 +30,23 @@ function AccountDetails({ children }: AccountDetailsProps) {
     setChainDetails(chainList[selectedChain]);
   }, [selectedChain, address]);
 
-
+  interface CardProps {
+    title: string;
+    description: string;
+    imageUrl: string;
+  }
+  
+  const Card: React.FC<CardProps> = ({ title, description, imageUrl }) => {
+    return (
+      <div className="card">
+        <img src={imageUrl} alt={title} className="card-image" />
+        <div className="card-content">
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </div>
+      </div>
+    );
+  };
   return (
     <div className="py-16 w-11/12 px-4 sm:px-6 lg:px-8 z-0">
       <div className="flex flex-col space-y-2 md:flex-row md:justify-between md:space-y-0">
@@ -91,6 +106,7 @@ function AccountDetails({ children }: AccountDetailsProps) {
                   fill="#9CA3AF"
                 />
               </svg>
+
             </div>
           </div>
         </div>

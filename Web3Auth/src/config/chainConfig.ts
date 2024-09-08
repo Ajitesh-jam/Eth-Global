@@ -13,14 +13,14 @@ export const chain: {
     blockExplorerUrl: "https://sepolia.etherscan.io",
     logo: "https://web3auth.io/images/web3authlog.png",
   },
-  ethereum: {
+    ethereum: {
     chainNamespace: CHAIN_NAMESPACES.EIP155,
-    chainId: "0x1",
-    displayName: "Ethereum Mainnet",
-    rpcTarget: "https://rpc.ankr.com/eth",
-    blockExplorerUrl: "https://etherscan.io",
-    ticker: "ETH",
+    chainId: "0xaa36a7",
+    displayName: "Ethereum Sepolia",
     tickerName: "Ethereum",
+    ticker: "ETH",
+    rpcTarget: "https://rpc.ankr.com/eth_sepolia",
+    blockExplorerUrl: "https://sepolia.etherscan.io",
     logo: "https://web3auth.io/images/web3authlog.png",
   },
   polygon: {

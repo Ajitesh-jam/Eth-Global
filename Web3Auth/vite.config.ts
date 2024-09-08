@@ -24,4 +24,7 @@ export default defineConfig({
   define: {
     global: "globalThis",
   },
+  esbuild: {
+    target: 'esnext' // or a version that supports top-level await
+  }
 });

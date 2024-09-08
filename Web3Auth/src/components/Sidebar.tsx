@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import UserProfile from "../components/UserProfile";
 
 const Sidebar = () => {
-
   const navigate = useNavigate();
   function goToHome() {
     navigate("/");
@@ -13,7 +12,7 @@ const Sidebar = () => {
     navigate("/transaction");
   }
   function goToContract() {
-    navigate("/contract");
+    navigate("/contract/Welcome");
   }
   const location = useLocation();
   function linktoGo(label: string, path: any, id: number) {
@@ -42,7 +41,7 @@ const Sidebar = () => {
         <nav className="flex flex-col mt-6">
           {location.pathname === "/" ? activePage("Home", 1) : linktoGo("Home", goToHome, 1)}
           {location.pathname === "/transaction" ? activePage("Send ETH", 2) : linktoGo("Send ETH", goToTransaction, 2)}
-          {location.pathname === "/contract"
+          {location.pathname.startsWith("/contract")
             ? activePage("Shop", 3)
             : linktoGo("Shop", goToContract, 3)}
         </nav>
