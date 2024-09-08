@@ -1,2 +1,0 @@
-follow link 
-https://docs.stf.xyz/build/zero-to-one/build-your-first-mru
